@@ -109,19 +109,20 @@ function generate_sitemap() {
     sitemap_add_url(osc_base_url(), date('Y-m-d'), 'always');
     
     // Category
-    if( osc_get_preference('sitemap_categories', 'sitemap_plugin') ) {
     if(osc_count_categories () > 0) {
-        while ( osc_has_categories() ) {
-            sitemap_add_url(osc_search_category_url(), date('Y-m-d'), 'hourly');
-            if ( osc_count_subcategories() > 0 ) {
-                while ( osc_has_subcategories() ) {
-                    sitemap_add_url(osc_search_category_url(), date('Y-m-d'), 'hourly');
-                }
-            }
-        }
+    while ( osc_has_categories() ) {
+        if ( osc_category_total_items() > 0 ) {
+                sitemap_add_url(osc_search_category_url(), date('Y-m-d'), 'hourly');
+            	}
+        if ( osc_count_subcategories() > 0 ) {
+           while ( osc_has_subcategories() ) {
+                if ( osc_category_total_items() > 0 ) {
+                      	sitemap_add_url(osc_search_category_url(), date('Y-m-d'), 'hourly');
+                  }
+    	   	}
+    	}
     }
     }
-    
     // countries
     if( osc_get_preference('sitemap_countries', 'sitemap_plugin') ) {
     if(osc_count_list_countries() > 0) {
