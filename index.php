@@ -75,7 +75,7 @@ function sitemap_add_url($url = '', $date = '', $freq = 'daily') {
 
     $filename = osc_base_path() . 'sitemap.xml';
     $xml  = '    <url>' . PHP_EOL;
-    $xml .= '        <loc>' . htmlentities($url, ENT_QUOTES, "UTF-8") . '</loc>' . PHP_EOL;
+    $xml .= '        <loc>' . htmlspecialchars($url, ENT_QUOTES, "UTF-8") . '</loc>' . PHP_EOL;
     $xml .= '        <lastmod>' . $date . '</lastmod>' . PHP_EOL;
     $xml .= '        <changefreq>' . $freq . '</changefreq>' . PHP_EOL;
     $xml .= '    </url>' . PHP_EOL;
